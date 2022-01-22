@@ -1,4 +1,5 @@
 #! /bin/bash
+# script_monitor
 # unset any variable which system may be using
 # clear the screen
 
