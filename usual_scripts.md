@@ -1,4 +1,4 @@
-# 批量创建多个用户并设置密码
+#### 批量创建多个用户并设置密码
 ```
 #!/bin/bash
 USER_LIST=$@
@@ -16,7 +16,7 @@ for USER in $USER_LIST;do
 done
 ```
 
-# 一键查看服务器利用率
+#### 一键查看服务器利用率
 ```
 #!/bin/bash
 function cpu(){
@@ -55,7 +55,7 @@ disk
 tcp_status
 ```
 
-# 找出占用CPU 内存过高的进程
+#### 找出占用CPU 内存过高的进程
 ```
 #!/bin/bash
 echo "-------------------CUP占用前10排序--------------------------------"
@@ -64,7 +64,7 @@ echo "-------------------内存占用前10排序--------------------------------
 ps -eo user,pid,pcpu,pmem,args --sort=-pmem  |head -n 10
 ```
 
-# 查看网卡的实时流量
+#### 查看网卡的实时流量
 ```
 #!/bin/bash
 eth0=$1
@@ -80,7 +80,7 @@ while true; do
  echo "$in $out"
 done
 ```
-# 监控多台服务器磁盘利用率脚本
+#### 监控多台服务器磁盘利用率脚本
 ```
 #!/bin/bash
 HOST_INFO=host.info
@@ -111,7 +111,7 @@ for IP in $(awk '/^[^#]/{print $1}' $HOST_INFO); do
 done
 ```
 
-# 批量检测网站是否异常并邮件通知
+#### 批量检测网站是否异常并邮件通知
 ```
 #!/bin/bash  
 URL_LIST="www.baidu.com www.ctnrs.com www.der-matech.net.cn www.der-matech.com.cn www.der-matech.cn www.der-matech.top www.der-matech.org"
@@ -134,7 +134,7 @@ for URL in $URL_LIST; do
 done
 ```
 
-# 批量主机远程执行命令脚本
+#### 批量主机远程执行命令脚本
 ```
 #!/bin/bash
 COMMAND=$*
@@ -155,7 +155,7 @@ for IP in $(awk '/^[^#]/{print $1}' $HOST_INFO); do
 done
 ```
 
-# 一键部署LNMP网站平台脚本
+#### 一键部署LNMP网站平台脚本
 ```
 #!/bin/bash
 NGINX_V=1.15.6
@@ -249,7 +249,7 @@ case $number in
         exit;;
 esac
 ```
-# 监控MySQL主从同步状态是否异常脚本
+#### 监控MySQL主从同步状态是否异常脚本
 ```
 #!/bin/bash  
 HOST=localhost
@@ -265,8 +265,8 @@ for i in $IO_SQL_STATUS; do
 done
 ```
 
-# MySql数据库备份脚本
-## 分库备份
+#### MySql数据库备份脚本
+##### 分库备份
 ```
 mysqldump -uroot -pxxx -B A > A.sql
 #!/bin/bash
@@ -284,7 +284,7 @@ for DB in $DB_LIST; do
     fi
 done
 ```
-## 分表备份
+##### 分表备份
 ```
 mysqldump -uroot -pxxx -A t > t.sql
 #!/bin/bash
@@ -308,7 +308,7 @@ for DB in $DB_LIST; do
 done
 ```
 
-# Nginx访问日志分析
+#### Nginx访问日志分析
 ```
 #!/bin/bash
 # 日志格式: $remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"
@@ -329,7 +329,7 @@ echo "统计访问页面状态码数量"
 awk '{a[$7" "$9]++}END{for(v in a){if(a[v]>5)print v,a[v]}}' $LOG_FILE |sort -k3 -nr
 ```
 
-# Nginx访问日志自动按天（周、月）切割
+#### Nginx访问日志自动按天（周、月）切割
 ```
 #!/bin/bash
 #nginx日志目录
@@ -349,7 +349,7 @@ done
 kill -USR1 $(cat $LOG_DIR/nginx.pid)
 ```
 
-# 自动发布Java项目（Tomcat）
+#### 自动发布Java项目（Tomcat）
 ```
 #!/bin/bash
 DATE=$(date +%F_%T)
@@ -387,7 +387,7 @@ unzip $WORK_DIR/$PROJECT_NAME/target/*.war -d $ROOT
 $TOMCAT_DIR/bin/startup.sh
 ```
 
-# 自动发布PHP项目
+#### 自动发布PHP项目
 ```
 #!/bin/bash
  
@@ -421,7 +421,7 @@ else
 fi
 ```
 
-# 目录入侵检测与告警
+### 目录入侵检测与告警
 ```
 #!/bin/bash
  
