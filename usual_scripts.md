@@ -1,23 +1,3 @@
-Header: Server=GitHub.com
-Header: X-Ratelimit-Reset=1644554786
-Header: X-Ratelimit-Used=2
-Header: Access-Control-Allow-Origin=*
-Header: X-Github-Request-Id=3B9C:5559:2A2122:2D288E:6205DD01
-Header: Date=Fri, 11 Feb 2022 03:50:25 GMT
-Header: Content-Type=text/html;charset=utf-8
-Header: Access-Control-Expose-Headers=ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset
-Header: X-Frame-Options=deny
-Header: Content-Security-Policy=default-src 'none'
-Header: Vary=Accept-Encoding, Accept, X-Requested-With
-Header: X-Ratelimit-Limit=60
-Header: X-Ratelimit-Remaining=58
-Header: Strict-Transport-Security=max-age=31536000; includeSubdomains; preload
-Header: X-Commonmarker-Version=0.23.2
-Header: X-Ratelimit-Resource=core
-Header: X-Content-Type-Options=nosniff
-Header: X-Xss-Protection=0
-Header: Referrer-Policy=origin-when-cross-origin, strict-origin-when-cross-origin
-
 #### 批量创建多个用户并设置密码
 ```
 #!/bin/bash
