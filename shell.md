@@ -1,23 +1,264 @@
+* [一、基本命令](#一基本命令)
+  * [1\. grep工具](#1-grep工具)
+    * [语法和选项](#语法和选项)
+  * [2\. cut工具](#2-cut工具)
+    * [语法和选项](#语法和选项-1)
+  * [3\. sort工具](#3-sort工具)
+      * [语法和选项](#语法和选项-2)
+  * [5\.tee工具](#5tee工具)
+  * [6\.diff工具](#6diff工具)
+    * [语法和选项](#语法和选项-3)
+  * [7\. paste工具](#7-paste工具)
+  * [8\. tr工具](#8-tr工具)
+    * [语法和选项](#语法和选项-4)
+      * [小试牛刀](#小试牛刀)
+* [二、bash的特性](#二bash的特性)
+  * [1、命令和文件自动补全](#1命令和文件自动补全)
+  * [<strong>2、常见的快捷键</strong>](#2常见的快捷键)
+  * [<strong>4、bash中的引号</strong>（重点）](#4bash中的引号重点)
+* [三、SHELL介绍](#三-shell介绍)
+  * [3\. shell脚本](#3-shell脚本)
+    * [㈠ 什么是shell脚本？](#-什么是shell脚本)
+    * [㈡ 什么时候用到脚本?](#-什么时候用到脚本)
+    * [㈢ shell脚本能干啥?](#-shell脚本能干啥)
+    * [㈣ 如何学习shell脚本？](#-如何学习shell脚本)
+    * [㈤ 学习shell脚本的秘诀](#-学习shell脚本的秘诀)
+    * [㈥ shell脚本的基本写法](#-shell脚本的基本写法)
+    * [㈦ shell脚本的执行方法](#-shell脚本的执行方法)
+* [二、变量的定义](#二变量的定义)
+  * [1\. 变量是什么？](#1-变量是什么)
+  * [2\. 什么时候需要定义变量？](#2-什么时候需要定义变量)
+  * [3\.变量如何定义？](#3变量如何定义)
+  * [4\. 变量的定义规则](#4-变量的定义规则)
+    * [㈠ 变量名区分大小写](#-变量名区分大小写)
+    * [㈡ 变量名不能有特殊符号](#-变量名不能有特殊符号)
+    * [㈢ 变量名不能以数字开头](#-变量名不能以数字开头)
+    * [㈣ 等号两边不能有任何空格](#-等号两边不能有任何空格)
+    * [㈤ 变量名尽量做到见名知意](#-变量名尽量做到见名知意)
+  * [5\. 变量的定义方式有哪些？](#5-变量的定义方式有哪些)
+    * [㈠ 基本方式](#-基本方式)
+    * [㈡ 命令执行结果赋值给变量](#-命令执行结果赋值给变量)
+    * [㈢ 交互式定义变量(read)](#-交互式定义变量read)
+    * [㈣ 定义有类型的变量(declare)](#-定义有类型的变量declare)
+  * [<strong>6\. 变量的分类</strong>](#6-变量的分类)
+    * [㈠ 本地变量](#-本地变量)
+    * [㈡ 环境变量](#-环境变量)
+      * [2、环境变量的分类](#2环境变量的分类)
+    * [㈢ 全局变量](#-全局变量)
+    * [㈣ 系统变量](#-系统变量)
+* [三、简单四则运算](#三简单四则运算)
+  * [<strong>1\. 四则运算符号</strong>](#1-四则运算符号)
+  * [2\.了解i和i](#2了解i和i)
+* [四、扩展补充](#四扩展补充)
+  * [<strong>1\. 数组定义</strong>](#1-数组定义)
+    * [㈠ 数组分类](#-数组分类)
+    * [㈡ 普通数组定义](#-普通数组定义)
+    * [㈢ 数组的读取](#-数组的读取)
+    * [㈣ 关联数组定义](#-关联数组定义)
+      * [①首先声明关联数组](#首先声明关联数组)
+      * [② 数组赋值](#-数组赋值)
+  * [2\. 其他变量定义](#2-其他变量定义)
+* [本节课程目标](#本节课程目标)
+* [一、条件判断语法结构](#一条件判断语法结构)
+  * [<strong>1\. 条件判断语法格式</strong>](#1-条件判断语法格式)
+  * [2\. 条件判断相关参数](#2-条件判断相关参数)
+    * [㈠ 判断文件类型](#-判断文件类型)
+    * [㈡ 判断文件权限](#-判断文件权限)
+    * [㈢ 判断文件新旧](#-判断文件新旧)
+    * [㈣ 判断整数](#-判断整数)
+    * [㈤ 判断字符串](#-判断字符串)
+    * [㈥ 多重条件判断](#-多重条件判断)
+      * [① 举例说明](#-举例说明)
+      * [② 逻辑运算符总结](#-逻辑运算符总结)
+* [二、流程控制语句](#二流程控制语句)
+  * [1\. 基本语法结构](#1-基本语法结构)
+    * [㈠ if结构](#-if结构)
+    * [㈡ if\.\.\.else结构](#-ifelse结构)
+    * [㈢ if\.\.\.elif\.\.\.else结构](#-ifelifelse结构)
+    * [㈣ 层层嵌套结构](#-层层嵌套结构)
+  * [2\. 应用案例](#2-应用案例)
+    * [㈠ 判断两台主机是否ping通](#-判断两台主机是否ping通)
+      * [① 思路](#-思路)
+      * [② 落地实现](#-落地实现)
+    * [㈡ 判断一个进程是否存在](#-判断一个进程是否存在)
+      * [① 思路](#-思路-1)
+      * [② 落地实现](#-落地实现-1)
+      * [③ 补充命令](#-补充命令)
+    * [㈢ 判断一个服务是否正常](#-判断一个服务是否正常)
+      * [① 思路](#-思路-2)
+      * [② 落地实现](#-落地实现-2)
+  * [3\. 课堂练习](#3-课堂练习)
+    * [㈠ 判断用户是否存在](#-判断用户是否存在)
+    * [㈡ 判断软件包是否安装](#-判断软件包是否安装)
+    * [㈢ 判断当前主机的内核版本](#-判断当前主机的内核版本)
+* [一、for循环语句](#一for循环语句)
+  * [1\. for循环语法结构](#1-for循环语法结构)
+    * [㈠ 列表循环](#-列表循环)
+    * [㈡ 不带列表循环](#-不带列表循环)
+    * [㈢ 类C风格的for循环](#-类c风格的for循环)
+  * [2\. 应用案例](#2-应用案例-1)
+    * [㈠ 脚本计算1\-100奇数和](#-脚本计算1-100奇数和)
+      * [① 思路](#-思路-3)
+      * [② 落地实现（条条大路通罗马）](#-落地实现条条大路通罗马)
+      * [③ 循环控制语句](#-循环控制语句)
+    * [㈡ 判断所输整数是否为质数](#-判断所输整数是否为质数)
+      * [① 思路](#-思路-4)
+      * [② 落地实现](#-落地实现-3)
+    * [㈢ 批量创建用户](#-批量创建用户)
+      * [① 思路](#-思路-5)
+      * [② 落地实现](#-落地实现-4)
+  * [3\. 课堂练习](#3-课堂练习-1)
+    * [㈠ 批量创建用户](#-批量创建用户-1)
+    * [㈡ 局域网内脚本检查主机网络通讯](#-局域网内脚本检查主机网络通讯)
+    * [㈢ 判断闰年](#-判断闰年)
+  * [2\. 应用案例](#2-应用案例-2)
+    * [㈠ 脚本计算1\-50偶数和](#-脚本计算1-50偶数和)
+    * [㈡ 脚本同步系统时间](#-脚本同步系统时间)
+      * [① 具体需求](#-具体需求)
+      * [② 思路](#-思路-6)
+      * [③ 落地实现](#-落地实现-5)
+  * [1\. until语法结构](#1-until语法结构)
+  * [2\. 应用案例](#2-应用案例-3)
+    * [㈡ 思路](#-思路-7)
+    * [㈢ 落地实现](#-落地实现-6)
+* [四、课后作业](#四课后作业)
+* [一、随机数](#一随机数)
+  * [1\. 如何生成随机数？](#1-如何生成随机数)
+  * [2\. 实战案例](#2-实战案例)
+    * [㈠ 随机产生以139开头的电话号码](#-随机产生以139开头的电话号码)
+      * [① 思路](#-思路-8)
+      * [② 落地实现](#-落地实现-7)
+    * [㈡ 随机抽出5位幸运观众](#-随机抽出5位幸运观众)
+      * [① 思路](#-思路-9)
+      * [② 落地实现](#-落地实现-8)
+    * [㈢ 批量创建用户(密码随机产生)](#-批量创建用户密码随机产生)
+      * [① 思路](#-思路-10)
+      * [② 落地实现](#-落地实现-9)
+* [二、嵌套循环](#二嵌套循环)
+    * [㈠ 打印指定图案](#-打印指定图案)
+    * [㈡ 落地实现1](#-落地实现1)
+    * [㈢ 落地实现2](#-落地实现2)
+* [三、阶段性补充总结](#三阶段性补充总结)
+  * [1、变量定义](#1变量定义)
+  * [2\. 流程控制语句](#2-流程控制语句)
+  * [3\. 循环语句](#3-循环语句)
+  * [4\. 影响shell程序的内置命令](#4-影响shell程序的内置命令)
+    * [㈠ 具体需求](#-具体需求-1)
+    * [㈢ 落地实现](#-落地实现-10)
+      * [② 最终实现](#-最终实现)
+* [一、随机数](#一随机数-1)
+  * [1\. 如何生成随机数？](#1-如何生成随机数-1)
+  * [2\. 实战案例](#2-实战案例-1)
+    * [㈠ 随机产生以139开头的电话号码](#-随机产生以139开头的电话号码-1)
+      * [① 思路](#-思路-11)
+      * [② 落地实现](#-落地实现-11)
+    * [㈡ 随机抽出5位幸运观众](#-随机抽出5位幸运观众-1)
+      * [① 思路](#-思路-12)
+      * [② 落地实现](#-落地实现-12)
+    * [㈢ 批量创建用户(密码随机产生)](#-批量创建用户密码随机产生-1)
+      * [① 思路](#-思路-13)
+      * [② 落地实现](#-落地实现-13)
+* [二、嵌套循环](#二嵌套循环-1)
+    * [㈠ 打印指定图案](#-打印指定图案-1)
+    * [㈡ 落地实现1](#-落地实现1-1)
+    * [㈢ 落地实现2](#-落地实现2-1)
+* [三、阶段性补充总结](#三阶段性补充总结-1)
+  * [1\. 变量定义](#1-变量定义)
+  * [2\. 流程控制语句](#2-流程控制语句-1)
+  * [3\. 循环语句](#3-循环语句-1)
+  * [4\. 影响shell程序的内置命令](#4-影响shell程序的内置命令-1)
+    * [㈠ 具体需求](#-具体需求-2)
+    * [㈡ 案例分析](#-案例分析)
+    * [㈢ 落地实现](#-落地实现-14)
+      * [① 代码拆分](#-代码拆分)
+      * [② 最终实现](#-最终实现-1)
+* [一、case语句](#一case语句)
+  * [1\. 语法结构](#1-语法结构)
+  * [2\. 应用案例](#2-应用案例-4)
+    * [㈠ 脚本传不同值做不同事](#-脚本传不同值做不同事)
+    * [㈡ 根据用户需求选择做事](#-根据用户需求选择做事)
+* [二、函数](#二函数)
+  * [1\. 什么是函数？](#1-什么是函数)
+  * [2\. 如何定义函数？](#2-如何定义函数)
+    * [㈠ 当前命令行调用](#-当前命令行调用)
+    * [㈡ 定义到用户的环境变量中](#-定义到用户的环境变量中)
+    * [㈢ 脚本中调用](#-脚本中调用)
+  * [1\. 任务背景](#1-任务背景)
+  * [2\. 具体要求](#2-具体要求)
+  * [3\. 综合分析](#3-综合分析)
+  * [4\. 落地实现](#4-落地实现)
+* [四、正则表达式](#四正则表达式)
+  * [2\. 正则能干什么？](#2-正则能干什么)
+  * [3\. 正则当中名词解释](#3-正则当中名词解释)
+    * [㈠ 正则中普通常用的元字符](#-正则中普通常用的元字符)
+    * [㈡ 正则中其他常用元字符](#-正则中其他常用元字符)
+    * [㈢ 扩展类正则常用元字符](#-扩展类正则常用元字符)
+  * [6\. 正则表达式总结](#6-正则表达式总结)
+* [五、正则元字符一栏表](#五正则元字符一栏表)
+* [六、正则练习作业](#六正则练习作业)
+  * [1\. 文件准备](#1-文件准备)
+  * [2\. 具体要求](#2-具体要求-1)
+  * [脚本搭建web服务](#脚本搭建web服务)
+* [一、文件编辑器知多少](#一文件编辑器知多少)
+  * [1\. sed用来做啥？](#1-sed用来做啥)
+  * [2\. sed如何处理文件？](#2-sed如何处理文件)
+  * [1\. 命令行格式](#1-命令行格式)
+    * [㈠ 语法格式](#-语法格式)
+    * [㈡ 举例说明](#-举例说明-1)
+      * [① 对文件进行增、删、改、查操作](#-对文件进行增删改查操作)
+        * [1）打印文件内容](#1打印文件内容)
+        * [2）增加文件内容](#2增加文件内容)
+        * [3）修改文件内容](#3修改文件内容)
+        * [4）删除文件内容](#4删除文件内容)
+      * [② 对文件进行搜索替换操作](#-对文件进行搜索替换操作)
+      * [③ 其他命令](#-其他命令)
+      * [④ 其他选项](#-其他选项)
+      * [⑤ sed结合正则使用](#-sed结合正则使用)
+    * [㈠ 用法](#-用法)
+    * [㈡ 注意事项](#-注意事项)
+    * [㈢举例说明](#举例说明)
+* [一、awk介绍](#一awk介绍)
+  * [1\. awk概述](#1-awk概述)
+  * [2\. awk能干啥?](#2-awk能干啥)
+  * [1\. 命令行模式使用](#1-命令行模式使用)
+    * [㈠ 语法结构](#-语法结构)
+  * [2\. 脚本模式使用](#2-脚本模式使用)
+    * [㈠ 脚本编写](#-脚本编写)
+    * [㈡ 脚本执行](#-脚本执行)
+  * [1、常用内置变量举例](#1常用内置变量举例)
+  * [2、内置变量分隔符举例](#2内置变量分隔符举例)
+* [五、awk使用进阶](#五awk使用进阶)
+  * [1\. 格式化输出print和printf](#1-格式化输出print和printf)
+  * [2\. awk变量定义](#2-awk变量定义)
+      * [㈠ 举例说明1](#-举例说明1)
+      * [㈡ 举例说明2](#-举例说明2)
+    * [㈠ 举例说明](#-举例说明-2)
+  * [4\. 课堂练习](#4-课堂练习)
+    * [㈠ 流程控制语句](#-流程控制语句)
+      * [① if结构](#-if结构-1)
+      * [② if\.\.\.else结构](#-ifelse结构-1)
+      * [③ if\.\.\.elif\.\.\.else结构](#-ifelifelse结构-1)
+    * [㈡ 循环语句](#-循环语句)
+      * [① for循环](#-for循环)
+      * [② while循环](#-while循环)
+      * [③ 嵌套循环](#-嵌套循环)
+* [六、awk统计案例](#六awk统计案例)
+  * [1、统计系统中各种类型的shell](#1统计系统中各种类型的shell)
+  * [2、统计网站访问状态](#2统计网站访问状态)
+  * [3、统计访问网站的每个IP的数量](#3统计访问网站的每个ip的数量)
+  * [4、统计网站日志中PV量](#4统计网站日志中pv量)
+      * [1\. 任务/背景](#1-任务背景-1)
+      * [2\. 具体要求](#2-具体要求-2)
+      * [3\. 涉及知识点](#3-涉及知识点)
+
+
+
 # 第一章
 
 - 本节课程目标
-  - - [语法和选项](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#语法和选项)
-    - [语法和选项](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#语法和选项-2)
-  - \3. sort工具
-    - - [语法和选项](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#语法和选项-3)
-  - [5.tee工具](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#5tee工具)
-  - 6.diff工具
-    - [语法和选项](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#语法和选项-4)
-  - [7. paste工具](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#7-paste工具)
-  - \8. tr工具
-    - 语法和选项
-      - [小试牛刀](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#小试牛刀)
-- [二、bash的特性](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDB19623567304A08B990511BF992DCEA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-bash的特性)
-
-
-
-- 了解shell中的通配符
-- 熟悉grep、cut、sort等小工具和shell中的通配符的使用
+  -- 基本文本处理命令
+  -- 了解shell中的通配符
+  -- 熟悉grep、cut、sort等小工具和shell中的通配符的使用
 
 \#一、文本处理工具
 
@@ -552,49 +793,8 @@ date +%F
 
 
 - 一、SHELL介绍
-  - - [㈠ 什么是shell脚本？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-什么是shell脚本)
-    - [㈡ 什么时候用到脚本?](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-什么时候用到脚本)
-    - [㈢ shell脚本能干啥?](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-shell脚本能干啥)
-    - [㈣ 如何学习shell脚本？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#四-如何学习shell脚本)
-    - [㈤ 学习shell脚本的秘诀](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#五-学习shell脚本的秘诀)
-    - [㈥ shell脚本的基本写法](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#六-shell脚本的基本写法)
-    - [㈦ shell脚本的执行方法](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#七-shell脚本的执行方法)
-- 二、变量的定义
-  - [1. 变量是什么？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-变量是什么)
-  - [2. 什么时候需要定义变量？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-什么时候需要定义变量)
-  - [3.变量如何定义？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3变量如何定义)
-  - \4. 变量的定义规则
-    - [㈠ 变量名区分大小写](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-变量名区分大小写)
-    - [㈡ 变量名不能有特殊符号](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-变量名不能有特殊符号)
-    - [㈢ 变量名不能以数字开头](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-变量名不能以数字开头)
-    - [㈣ 等号两边不能有任何空格](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#四-等号两边不能有任何空格)
-    - [㈤ 变量名尽量做到见名知意](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#五-变量名尽量做到见名知意)
-  - \5. 变量的定义方式有哪些？
-    - [㈠ 基本方式](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-基本方式)
-    - [㈡ 命令执行结果赋值给变量](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-命令执行结果赋值给变量)
-    - [㈢ 交互式定义变量(read)](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-交互式定义变量read)
-    - [㈣ 定义有类型的变量(declare)](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#四-定义有类型的变量declare)
-  - \6. 变量的分类
-    - [㈠ 本地变量](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-本地变量)
-    - [㈡ 环境变量](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-环境变量)
-    - [㈢ 全局变量](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-全局变量)
-    - [㈣ 系统变量](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#四-系统变量)
-- 三、简单四则运算
-  - [1. 四则运算符号](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-四则运算符号)
-  - [2.了解i和i](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2了解i和i)
-- 四、扩展补充
-  - \1. 数组定义
-    - [㈠ 数组分类](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-数组分类)
-    - [㈡ 普通数组定义](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-普通数组定义)
-    - [㈢ 数组的读取](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-数组的读取)
-    - ㈣ 关联数组定义
-      - [①首先声明关联数组](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1首先声明关联数组)
-      - [② 数组赋值](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-数组赋值)
-  - [2. 其他变量定义](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8743C60B9CFA48FC8173CC49D03CADCA%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-其他变量定义)
-
+ 
 \#SHELL编程模块课程目标
-
-
 
 - ① Shell的基本语法结构
 
@@ -1018,7 +1218,7 @@ hello
 
 ### ㈡ 环境变量
 
-#### 2、环境变量的分类
+#### 环境变量的分类
 
 1）按生效的范围分类。
 
@@ -2058,46 +2258,6 @@ var2=$(echo $kernel|cut -d. -f2)
 ```
 
 
-
-- 一、for循环语句
-  - \1. for循环语法结构
-    - [㈠ 列表循环](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-列表循环)
-    - [㈡ 不带列表循环](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-不带列表循环)
-    - [㈢ 类C风格的for循环](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-类c风格的for循环)
-  - \2. 应用案例
-    - ㈠ 脚本计算1-100奇数和
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路)
-      - [② 落地实现（条条大路通罗马）](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现条条大路通罗马)
-      - [③ 循环控制语句](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-循环控制语句)
-    - ㈡ 判断所输整数是否为质数
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路-2)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现)
-    - ㈢ 批量创建用户
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路-3)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现-2)
-  - \3. 课堂练习
-    - [㈠ 批量创建用户](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-批量创建用户)
-    - [㈡ 局域网内脚本检查主机网络通讯](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-局域网内脚本检查主机网络通讯)
-    - [㈢ 判断闰年](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-判断闰年)
-  - \2. 应用案例
-    - [㈠ 脚本计算1-50偶数和](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-脚本计算1-50偶数和)
-    - ㈡ 脚本同步系统时间
-      - [① 具体需求](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-具体需求)
-      - [② 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-思路)
-      - [③ 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-落地实现)
-  - [1. until语法结构](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-until语法结构)
-  - \2. 应用案例
-    - [㈡ 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-思路)
-    - [㈢ 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-落地实现)
-- [四、课后作业](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F57E7E4739A804C0DA2FE8B40062A8D88%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#四-课后作业)
-
-\#本机课程目标
-
-
-
-- 掌握for循环语句的基本语法结构
-- 掌握while和until循环语句的基本语法结构
-
 # 一、for循环语句
 
 **关键词：爱的魔力转圈圈**:innocent:
@@ -2655,45 +2815,12 @@ done
 5. 写一个脚本自动搭建nfs服务
 
 
-
-
-
-- 一、随机数
-  - [1. 如何生成随机数？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-如何生成随机数)
-  - \2. 实战案例
-    - ㈠ 随机产生以139开头的电话号码
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现)
-    - ㈡ 随机抽出5位幸运观众
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路-2)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现-2)
-    - ㈢ 批量创建用户(密码随机产生)
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路-3)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现-3)
-- 二、嵌套循环
-  - - [㈠ 打印指定图案](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-打印指定图案)
-    - [㈡ 落地实现1](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-落地实现1)
-    - [㈢ 落地实现2](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-落地实现2)
-- 三、阶段性补充总结
-  - [1、变量定义](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-变量定义)
-  - [2. 流程控制语句](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-流程控制语句)
-  - [3. 循环语句](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-循环语句)
-  - \4. 影响shell程序的内置命令
-    - [㈠ 具体需求](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-具体需求)
-    - ㈢ 落地实现
-      - [② 最终实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE68AFB232754CC3B69719EA221D1357%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-最终实现)
-
+# 一、随机数
 \#课程目标
-
-
-
 - 掌握for循环语句的基本语法结构
 - 掌握while和until循环语句的基本语法结构
 - 能会使用RANDOM产生随机数
 - 理解嵌套循环
-
-# 一、随机数
-
 **关键词：一切都是未知数，永远不知道明天会抽什么风**:wind_chime::sweat_smile:
 
 ## 1. 如何生成随机数？
@@ -3534,43 +3661,13 @@ done
 
 
 
-- 一、随机数
-  - [1. 如何生成随机数？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-如何生成随机数)
-  - \2. 实战案例
-    - ㈠ 随机产生以139开头的电话号码
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现)
-    - ㈡ 随机抽出5位幸运观众
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路-2)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现-2)
-    - ㈢ 批量创建用户(密码随机产生)
-      - [① 思路](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-思路-3)
-      - [② 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-落地实现-3)
-- 二、嵌套循环
-  - - [㈠ 打印指定图案](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-打印指定图案)
-    - [㈡ 落地实现1](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-落地实现1)
-    - [㈢ 落地实现2](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-落地实现2)
-- 三、阶段性补充总结
-  - [1. 变量定义](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-变量定义)
-  - [2. 流程控制语句](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-流程控制语句)
-  - [3. 循环语句](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-循环语句)
-  - \4. 影响shell程序的内置命令
-    - [㈠ 具体需求](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-具体需求)
-    - [㈡ 案例分析](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-案例分析)
-    - ㈢ 落地实现
-      - [① 代码拆分](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-代码拆分)
-      - [② 最终实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F26BAD9E7C28B4836B85DEFED6D1C47C4%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-最终实现)
+# 一、随机数
 
 \#课程目标
-
-
-
 - 掌握for循环语句的基本语法结构
 - 掌握while和until循环语句的基本语法结构
 - 能会使用RANDOM产生随机数
 - 理解嵌套循环
-
-# 一、随机数
 
 **关键词：一切都是未知数，永远不知道明天会抽什么风**:wind_chime::sweat_smile:
 
@@ -4515,44 +4612,12 @@ done
 
 
 
-
-- 一、case语句
-  - [1. 语法结构](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-语法结构)
-  - \2. 应用案例
-    - [㈠ 脚本传不同值做不同事](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-脚本传不同值做不同事)
-    - [㈡ 根据用户需求选择做事](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-根据用户需求选择做事)
-- 二、函数
-  - [1. 什么是函数？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-什么是函数)
-  - \2. 如何定义函数？
-    - [㈠ 当前命令行调用](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-当前命令行调用)
-    - [㈡ 定义到用户的环境变量中](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-定义到用户的环境变量中)
-    - [㈢ 脚本中调用](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-脚本中调用)
-  - [1. 任务背景](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-任务背景)
-  - [2. 具体要求](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-具体要求)
-  - [3. 综合分析](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-综合分析)
-  - [4. 落地实现](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#4-落地实现)
-- 四、正则表达式
-  - [2. 正则能干什么？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-正则能干什么)
-  - \3. 正则当中名词解释
-    - [㈠ 正则中普通常用的元字符](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-正则中普通常用的元字符)
-    - [㈡ 正则中其他常用元字符](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-正则中其他常用元字符)
-    - [㈢ 扩展类正则常用元字符](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三-扩展类正则常用元字符)
-  - [6. 正则表达式总结](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#6-正则表达式总结)
-- [五、正则元字符一栏表](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#五-正则元字符一栏表)
-- 六、正则练习作业
-  - [1. 文件准备](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-文件准备)
-  - [2. 具体要求](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-具体要求-2)
-  - [脚本搭建web服务](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F25D87A9819C746E29E1D846E0187978C%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#脚本搭建web服务)
+# 一、case语句
 
 \#课程目标
-
-
-
 - 掌握case语句的基本语法结构
 - 掌握函数的定义及调用
 - 掌握常用的正则表达式元字符含义
-
-# 一、case语句
 
 **关键词：确认过眼神，你是对的人**:couple_with_heart:
 
@@ -5519,34 +5584,15 @@ end
 
 
 - - [typora-root-url: ....\pictures](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#typora-root-url-pictures)
-- 一、文件编辑器知多少
-  - [1. sed用来做啥？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-sed用来做啥)
-  - [2. sed如何处理文件？](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-sed如何处理文件)
-  - \1. 命令行格式
-    - [㈠ 语法格式](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-语法格式)
-    - ㈡ 举例说明
-      - ① 对文件进行增、删、改、查操作
-        - [1）打印文件内容](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1打印文件内容)
-        - [2）增加文件内容](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2增加文件内容)
-        - [3）修改文件内容](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3修改文件内容)
-        - [4）删除文件内容](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#4删除文件内容)
-      - [② 对文件进行搜索替换操作](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-对文件进行搜索替换操作)
-      - [③ 其他命令](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-其他命令)
-      - [④ 其他选项](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#4-其他选项)
-      - [⑤ sed结合正则使用](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#5-sed结合正则使用)
-    - [㈠ 用法](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-用法)
-    - [㈡ 注意事项](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-注意事项)
-    - [㈢举例说明](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2FDE6B4DF94A024C548A220DD89C0286A5%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#三举例说明)
-
-\#课程目标
 
 
 
-- 掌握sed的基本语法结构
-- 熟悉sed常用的命令，如打印p，删除d，插入i等
 
 # 一、文件编辑器知多少
 
+\#课程目标
+- 掌握sed的基本语法结构
+- 熟悉sed常用的命令，如打印p，删除d，插入i等
 - **Windows系统**
 
 ![edit](http://./edit.png?ynotemdtimestamp=1607388328295)
@@ -6154,50 +6200,16 @@ fi
 
 
 - - [typora-root-url: pictures](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#typora-root-url-pictures)
-- 一、awk介绍
-  - [1. awk概述](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-awk概述)
-  - [2. awk能干啥?](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-awk能干啥)
-  - \1. 命令行模式使用
-    - [㈠ 语法结构](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-语法结构)
-  - \2. 脚本模式使用
-    - [㈠ 脚本编写](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-脚本编写)
-    - [㈡ 脚本执行](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-脚本执行)
-  - [1、常用内置变量举例](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-常用内置变量举例)
-  - [2、内置变量分隔符举例](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-内置变量分隔符举例)
-- 五、awk使用进阶
-  - [1. 格式化输出`print`和`printf`](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-格式化输出print和printf)
-  - \2. awk变量定义
-    - - [㈠ 举例说明1](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-举例说明1)
-      - [㈡ 举例说明2](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#二-举例说明2)
-    - [㈠ 举例说明](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#一-举例说明)
-  - \4. 课堂练习
-    - ㈠ 流程控制语句
-      - [① if结构](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-if结构)
-      - [② if...else结构](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-ifelse结构)
-      - [③ if...elif...else结构](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-ifelifelse结构)
-    - ㈡ 循环语句
-      - [① for循环](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-for循环)
-      - [② while循环](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-while循环)
-      - [③ 嵌套循环](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-嵌套循环)
-- 六、awk统计案例
-  - [1、统计系统中各种类型的shell](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-统计系统中各种类型的shell)
-  - [2、统计网站访问状态](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-统计网站访问状态)
-  - [3、统计访问网站的每个IP的数量](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-统计访问网站的每个ip的数量)
-  - 4、统计网站日志中PV量
-    - - [1. 任务/背景](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#1-任务背景)
-      - [2. 具体要求](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#2-具体要求)
-      - [3. 涉及知识点](https://note.youdao.com/md/preview.html?file=%2Fyws%2Fapi%2Fpersonal%2Ffile%2F8B95F12DC08648A49F90FF43C3CB99DE%3Fmethod%3Ddownload%26read%3Dtrue%26shareKey%3Db402ca42248d060e7bdd5ee145f47cc5#3-涉及知识点)
+
+
+
+# 一、awk介绍
 
 \#课程目标
-
-
-
 - 熟悉awk的**命令行模式**基本语法结构
 - 熟悉awk的相关内部变量
 - 熟悉awk常用的打印函数print
 - 能够在awk中匹配正则表达式打印相关的行
-
-# 一、awk介绍
 
 ## 1. awk概述
 
